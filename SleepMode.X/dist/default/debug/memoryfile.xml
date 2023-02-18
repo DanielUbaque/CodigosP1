@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\SleepMode.X.production.hex">
+  <executable name="dist/default/debug\SleepMode.X.debug.hex">
     <memory name="program">
       <units>words</units>
       <length>4096</length>
-      <used>694</used>
-      <free>3402</free>
+      <used>687</used>
+      <free>3409</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
