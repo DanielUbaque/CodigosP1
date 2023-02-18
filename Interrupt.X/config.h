@@ -26,22 +26,22 @@
 // Use project enums instead of #define for ON and OFF.
 
 
-// Macros para la asignacion de pines
+// Macros para la asignacion de pines, y escritura en las salidas
 
-#define T1 LATAbits.LATA1
-#define T2 LATAbits.LATA2
-#define T3 LATAbits.LATA3
+#define T1 LATAbits.LATA1       //Salida T1
+#define T2 LATAbits.LATA2       //Salida T2
+#define T3 LATAbits.LATA3       //Salida T3
 
-#define ADis LATAbits.LATA4
-#define BDis LATAbits.LATA6
-#define CDis LATAbits.LATA7
-#define DDis LATBbits.LATB0
-#define EDis LATBbits.LATB3
-#define FDis LATBbits.LATB4
-#define GDis LATBbits.LATB5
+#define ADis LATAbits.LATA4     //Escritura segmento A
+#define BDis LATAbits.LATA6     //Escritura segmento B
+#define CDis LATAbits.LATA7     //Escritura segmento C
+#define DDis LATBbits.LATB0     //Escritura segmento D
+#define EDis LATBbits.LATB3     //Escritura segmento E
+#define FDis LATBbits.LATB4     //Escritura segmento F
+#define GDis LATBbits.LATB5     //Escritura segmento G
 
-#define RX TRISBbits.TRISB1
-#define TX TRISBbits.TRISB2
+#define RX TRISBbits.TRISB1     //Pin de recepcion
+#define TX TRISBbits.TRISB2     //Pin de trasmicion
 
 
 #define _XTAL_FREQ 4000000      //Frecuencia del oscilador
