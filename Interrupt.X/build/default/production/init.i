@@ -4362,19 +4362,46 @@ extern __bank0 __bit __timeout;
 
 # 1 "./funtions.h" 1
 
-void showNumber(int digit);
-void showNumbers(int *digits, int n);
-int* seg7(const int * iBCD);
-int* BinTOBcd(long iADC);
-void readADC();
-void UART_write(char c);
+
+
+
+
+void showNumber(unsigned short digit);
+# 16 "./funtions.h"
+void showNumbers(unsigned short *digits, int n);
+# 25 "./funtions.h"
+unsigned short * seg7(const unsigned short *iBCD);
+# 34 "./funtions.h"
+unsigned short* BinTOBcd(unsigned long iADC);
+
+
+
+
+
+void readADC(void);
+
+
+
+
+
+
+void UART_write(unsigned char c);
+
+
+
+
+
 void UART_print(unsigned char* cadena);
-unsigned char* ASCII_Con(int a, int b, int c);
+# 63 "./funtions.h"
+unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 5 "./init.h" 2
 
 
 void init_IO(void);
 void TMR0_INIT(void);
+
+
+
 void init_UART(void);
 # 2 "init.c" 2
 
@@ -4428,8 +4455,13 @@ void init_IO(void)
     ADCON0bits.ADON = 0;
     FVRCONbits.FVREN = 1;
     FVRCONbits.ADFVR = 0b11;
+
+    ADCON1bits.ADCS = 0b001;
+    ADCON0bits.CHS = 0b00000;
+    ADCON1bits.ADFM = 1;
     ADCON1bits.ADNREF = 0;
     ADCON1bits.ADPREF = 0b11;
+
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
 

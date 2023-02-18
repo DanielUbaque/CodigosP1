@@ -47,6 +47,7 @@ void init_IO(void)
     TRISBbits.TRISB7 = 0;
     
     //ADC
+    ADCON0bits.ADON = 0;
     FVRCONbits.FVREN = 1;       //Habilitamos el voltaje de referencia interno
     FVRCONbits.ADFVR = 0b11;    //Asignamos el voltaje de referencia a 4.096V
 

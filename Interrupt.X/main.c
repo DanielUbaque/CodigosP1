@@ -26,10 +26,10 @@ void main(void) {
     return;
 }
 
-void __interrupt() INT_TMR0(void){
+void __interrupt() interrupciones(void){
     
     static int count = 0;
-    static int* A ;
+    static unsigned short* A ;
     
     if(INTCONbits.TMR0IF == 1){
         if(count == 40)
@@ -51,7 +51,7 @@ void __interrupt() INT_TMR0(void){
         PIR1bits.ADIF = 0;
         ADCON0bits.ADON = 0;
         
-        int *B = BinTOBcd(((ADRESH<<8) + ADRESL));
+        unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
         //int *B = BinTOBcd(iADC);
         //int B[3] = {7, 8, 10};
         A = seg7(B);

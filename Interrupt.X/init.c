@@ -50,8 +50,13 @@ void init_IO(void)
     ADCON0bits.ADON = 0;
     FVRCONbits.FVREN = 1;       //Habilitamos el voltaje de referencia interno
     FVRCONbits.ADFVR = 0b11;    //Asignamos el voltaje de referencia a 4.096V
+
+    ADCON1bits.ADCS = 0b001;    //Seleccionamos el reloj de convercion
+    ADCON0bits.CHS = 0b00000;   //Seleccionamos el canal
+    ADCON1bits.ADFM = 1;        //Queremos el resultado con justificacion derecha
     ADCON1bits.ADNREF = 0;      //Asignamos el voltaje de referencia negativo a GND
     ADCON1bits.ADPREF = 0b11;   //Asignamos el voltaje de referencia positivo al voltaje de referencia interno
+
     PIE1bits.ADIE = 1;          //Habilitamos las interrupciones del ADC
     PIR1bits.ADIF = 0;          //Nos aseguramos que este en 0 la bandera
     

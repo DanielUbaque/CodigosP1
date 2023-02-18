@@ -13,7 +13,7 @@ void showNumber(unsigned short digit);
  * @param digits arreglo de tres elementos que contienen la representacion
  * logica para visualizar correctamente los digitos en el display
  */
-void showNumbers(unsigned short *digits);
+void showNumbers(unsigned short *digits, int n);
 
 /**
  * Formatea de BCD a 7 segmentos
@@ -37,12 +37,8 @@ unsigned short* BinTOBcd(unsigned long iADC);
  * Comienza la converción del ADC, al final del proceso se desactiva
  * @return la lectura obtenida del ADC
  */
-unsigned long readADC(void);
+void readADC(void);
 
-/**
- * Inicializa los registros necesarios para la tranmicion serial UART
- */
-void init_UART(void);
 
 /**
  * Trasmite un caracter por TX

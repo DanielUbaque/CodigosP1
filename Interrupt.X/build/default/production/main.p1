@@ -31,17 +31,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2057
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 2057: extern volatile LATAbits_t LATAbits __attribute__((address(0x10C)));
 [v _LATAbits `VS109 ~T0 @X0 0 e@268 ]
-"6 ./funtions.h
-[; ;./funtions.h: 6: void readADC();
-[; ;./funtions.h: 6: void readADC();
-[v _readADC `(v ~T0 @X0 0 e? ]
+"40 ./funtions.h
+[; ;./funtions.h: 40: void readADC(void);
+[; ;./funtions.h: 40: void readADC(void);
+[v _readADC `(v ~T0 @X0 0 ef ]
 "733 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 733: extern volatile unsigned char TMR0 __attribute__((address(0x015)));
 [v _TMR0 `Vuc ~T0 @X0 0 e@21 ]
-"3 ./funtions.h
-[; ;./funtions.h: 3: void showNumbers(int *digits, int n);
-[; ;./funtions.h: 3: void showNumbers(int *digits, int n);
-[v _showNumbers `(v ~T0 @X0 0 ef2`*i`i ]
+"16 ./funtions.h
+[; ;./funtions.h: 16: void showNumbers(unsigned short *digits, int n);
+[; ;./funtions.h: 16: void showNumbers(unsigned short *digits, int n);
+[v _showNumbers `(v ~T0 @X0 0 ef2`*us`i ]
 "560 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 560:     struct {
 [s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -72,28 +72,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1913
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1913: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x09D)));
 [v _ADCON0bits `VS102 ~T0 @X0 0 e@157 ]
-"5 ./funtions.h
-[; ;./funtions.h: 5: int* BinTOBcd(long iADC);
-[; ;./funtions.h: 5: int* BinTOBcd(long iADC);
-[v _BinTOBcd `(*i ~T0 @X0 0 ef1`l ]
+"34 ./funtions.h
+[; ;./funtions.h: 34: unsigned short* BinTOBcd(unsigned long iADC);
+[; ;./funtions.h: 34: unsigned short* BinTOBcd(unsigned long iADC);
+[v _BinTOBcd `(*us ~T0 @X0 0 ef1`ul ]
 "1868 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1868: extern volatile unsigned char ADRESH __attribute__((address(0x09C)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
 "1848
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1848: extern volatile unsigned char ADRESL __attribute__((address(0x09B)));
 [v _ADRESL `Vuc ~T0 @X0 0 e@155 ]
-"4 ./funtions.h
-[; ;./funtions.h: 4: int* seg7(const int * iBCD);
-[; ;./funtions.h: 4: int* seg7(const int * iBCD);
-[v _seg7 `(*i ~T0 @X0 0 ef1`*Ci ]
-"8
-[; ;./funtions.h: 8: void UART_print(unsigned char* cadena);
-[; ;./funtions.h: 8: void UART_print(unsigned char* cadena);
+"25 ./funtions.h
+[; ;./funtions.h: 25: unsigned short * seg7(const unsigned short *iBCD);
+[; ;./funtions.h: 25: unsigned short * seg7(const unsigned short *iBCD);
+[v _seg7 `(*us ~T0 @X0 0 ef1`*Cus ]
+"53
+[; ;./funtions.h: 53: void UART_print(unsigned char* cadena);
+[; ;./funtions.h: 53: void UART_print(unsigned char* cadena);
 [v _UART_print `(v ~T0 @X0 0 ef1`*uc ]
-"9
-[; ;./funtions.h: 9: unsigned char* ASCII_Con(int a, int b, int c);
-[; ;./funtions.h: 9: unsigned char* ASCII_Con(int a, int b, int c);
-[v _ASCII_Con `(*uc ~T0 @X0 0 ef3`i`i`i ]
+"63
+[; ;./funtions.h: 63: unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
+[; ;./funtions.h: 63: unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
+[v _ASCII_Con `(*uc ~T0 @X0 0 ef3`us`us`us ]
 "55 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -657,12 +657,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 27: }
 [e :UE 354 ]
 }
-[v $root$_INT_TMR0 `(v ~T0 @X0 0 e ]
+[v $root$_interrupciones `(v ~T0 @X0 0 e ]
 "29
-[; ;main.c: 29: void __attribute__((picinterrupt(("")))) INT_TMR0(void){
-[v _INT_TMR0 `(v ~T1 @X0 1 ef ]
+[; ;main.c: 29: void __attribute__((picinterrupt(("")))) interrupciones(void){
+[v _interrupciones `(v ~T1 @X0 1 ef ]
 {
-[e :U _INT_TMR0 ]
+[e :U _interrupciones ]
 [f ]
 "31
 [; ;main.c: 31:     static int count = 0;
@@ -671,8 +671,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `i
 ]
 "32
-[; ;main.c: 32:     static int* A ;
-[v F2522 `*i ~T0 @X0 1 s A ]
+[; ;main.c: 32:     static unsigned short* A ;
+[v F2522 `*us ~T0 @X0 1 s A ]
 "34
 [; ;main.c: 34:     if(INTCONbits.TMR0IF == 1){
 [e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 359  ]
@@ -729,12 +729,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 52:         ADCON0bits.ADON = 0;
 [e = . . _ADCON0bits 0 0 -> -> 0 `i `uc ]
 "54
-[; ;main.c: 54:         int *B = BinTOBcd(((ADRESH<<8) + ADRESL));
-[v _B `*i ~T0 @X0 1 a ]
-[e = _B ( _BinTOBcd (1 -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `l ]
+[; ;main.c: 54:         unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
+[v _B `*us ~T0 @X0 1 a ]
+[e = _B ( _BinTOBcd (1 -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ul ]
 "57
 [; ;main.c: 57:         A = seg7(B);
-[e = F2522 ( _seg7 (1 -> _B `*Ci ]
+[e = F2522 ( _seg7 (1 -> _B `*Cus ]
 "58
 [; ;main.c: 58:         UART_print(ASCII_Con(B[2], B[1], B[0]));
 [e ( _UART_print (1 ( _ASCII_Con (3 , , *U + _B * -> -> 2 `i `x -> -> # *U _B `i `x *U + _B * -> -> 1 `i `x -> -> # *U _B `i `x *U + _B * -> -> 0 `i `x -> -> # *U _B `i `x ]
