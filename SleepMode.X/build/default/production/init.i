@@ -4361,11 +4361,36 @@ extern __bank0 __bit __timeout;
 # 4 "./init.h" 2
 
 # 1 "./funtions.h" 1
-int* BinTOBcd(long iADC);
-void readADC();
-void UART_write(char c);
+
+
+
+
+
+
+
+
+unsigned short* BinTOBcd(unsigned long iADC);
+
+
+
+
+
+void readADC(void);
+
+
+
+
+
+
+void UART_write(unsigned char c);
+
+
+
+
+
 void UART_print(unsigned char* cadena);
-unsigned char* ASCII_Con(int a, int b, int c);
+# 38 "./funtions.h"
+unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 5 "./init.h" 2
 
 
@@ -4432,11 +4457,6 @@ void init_IO(void)
 
     WDTCONbits.WDTPS = 0b01010;
 
-
-
-    LATAbits.LATA1 = 0;
-    LATAbits.LATA2 = 0;
-    LATAbits.LATA3 = 0;
     LATAbits.LATA4 = 0;
     LATAbits.LATA6 = 0;
     LATAbits.LATA7 = 0;

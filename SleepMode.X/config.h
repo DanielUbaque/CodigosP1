@@ -5,7 +5,7 @@
 
 // CONFIG1
 #pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
-#pragma config WDTE = ON       // Watchdog Timer Enable (WDT disabled)
+#pragma config WDTE = ON        // Watchdog Timer Enable (WDT disabled)
 #pragma config PWRTE = OFF      // Power-up Timer Enable (PWRT disabled)
 #pragma config MCLRE = ON       // MCLR Pin Function Select (MCLR/VPP pin function is MCLR)
 #pragma config CP = OFF         // Flash Program Memory Code Protection (Program memory code protection is disabled)
@@ -28,20 +28,16 @@
 
 // Macros para la asignacion de pines
 
-#define T1 LATAbits.LATA1
-#define T2 LATAbits.LATA2
-#define T3 LATAbits.LATA3
+#define ADis LATAbits.LATA4     //Escritura segmento A
+#define BDis LATAbits.LATA6     //Escritura segmento B
+#define CDis LATAbits.LATA7     //Escritura segmento C
+#define DDis LATBbits.LATB0     //Escritura segmento D
+#define EDis LATBbits.LATB3     //Escritura segmento E
+#define FDis LATBbits.LATB4     //Escritura segmento F
+#define GDis LATBbits.LATB5     //Escritura segmento G
 
-#define ADis LATAbits.LATA4
-#define BDis LATAbits.LATA6
-#define CDis LATAbits.LATA7
-#define DDis LATBbits.LATB0
-#define EDis LATBbits.LATB3
-#define FDis LATBbits.LATB4
-#define GDis LATBbits.LATB5
-
-#define RX TRISBbits.TRISB1
-#define TX TRISBbits.TRISB2
+#define RX TRISBbits.TRISB1     //Pin de recepcion
+#define TX TRISBbits.TRISB2     //Pin de trasmicion
 
 
 #define _XTAL_FREQ 4000000      //Frecuencia del oscilador

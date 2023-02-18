@@ -4365,11 +4365,36 @@ extern __bank0 __bit __timeout;
 # 10 "main.c" 2
 
 # 1 "./funtions.h" 1
-int* BinTOBcd(long iADC);
-void readADC();
-void UART_write(char c);
+
+
+
+
+
+
+
+
+unsigned short* BinTOBcd(unsigned long iADC);
+
+
+
+
+
+void readADC(void);
+
+
+
+
+
+
+void UART_write(unsigned char c);
+
+
+
+
+
 void UART_print(unsigned char* cadena);
-unsigned char* ASCII_Con(int a, int b, int c);
+# 38 "./funtions.h"
+unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 11 "main.c" 2
 
 # 1 "./init.h" 1
@@ -4403,11 +4428,36 @@ unsigned char* ASCII_Con(int a, int b, int c);
 # 4 "./init.h" 2
 
 # 1 "./funtions.h" 1
-int* BinTOBcd(long iADC);
-void readADC();
-void UART_write(char c);
+
+
+
+
+
+
+
+
+unsigned short* BinTOBcd(unsigned long iADC);
+
+
+
+
+
+void readADC(void);
+
+
+
+
+
+
+void UART_write(unsigned char c);
+
+
+
+
+
 void UART_print(unsigned char* cadena);
-unsigned char* ASCII_Con(int a, int b, int c);
+# 38 "./funtions.h"
+unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 5 "./init.h" 2
 
 
@@ -4440,9 +4490,7 @@ void __attribute__((picinterrupt(("")))) INT_TMR0(void){
         PIR1bits.ADIF = 0;
         ADCON0bits.ADON = 0;
 
-        int *B = BinTOBcd(((ADRESH<<8) + ADRESL));
-
-
+        unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
         UART_print(ASCII_Con(B[2], B[1], B[0]));
         return;
     }

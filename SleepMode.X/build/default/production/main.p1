@@ -3,10 +3,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7 ./init.h
 [; ;./init.h: 7: void init_IO(void);
 [v _init_IO `(v ~T0 @X0 0 ef ]
-"2 ./funtions.h
-[; ;./funtions.h: 2: void readADC();
-[; ;./funtions.h: 2: void readADC();
-[v _readADC `(v ~T0 @X0 0 e? ]
+"15 ./funtions.h
+[; ;./funtions.h: 15: void readADC(void);
+[; ;./funtions.h: 15: void readADC(void);
+[v _readADC `(v ~T0 @X0 0 ef ]
 [t ~ __interrupt . k ]
 [t T1 __interrupt ]
 "560 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
@@ -39,24 +39,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1913
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1913: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x09D)));
 [v _ADCON0bits `VS102 ~T0 @X0 0 e@157 ]
-"1 ./funtions.h
-[; ;./funtions.h: 1: int* BinTOBcd(long iADC);
-[; ;./funtions.h: 1: int* BinTOBcd(long iADC);
-[v _BinTOBcd `(*i ~T0 @X0 0 ef1`l ]
+"9 ./funtions.h
+[; ;./funtions.h: 9: unsigned short* BinTOBcd(unsigned long iADC);
+[; ;./funtions.h: 9: unsigned short* BinTOBcd(unsigned long iADC);
+[v _BinTOBcd `(*us ~T0 @X0 0 ef1`ul ]
 "1868 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1868: extern volatile unsigned char ADRESH __attribute__((address(0x09C)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
 "1848
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1848: extern volatile unsigned char ADRESL __attribute__((address(0x09B)));
 [v _ADRESL `Vuc ~T0 @X0 0 e@155 ]
-"4 ./funtions.h
-[; ;./funtions.h: 4: void UART_print(unsigned char* cadena);
-[; ;./funtions.h: 4: void UART_print(unsigned char* cadena);
+"28 ./funtions.h
+[; ;./funtions.h: 28: void UART_print(unsigned char* cadena);
+[; ;./funtions.h: 28: void UART_print(unsigned char* cadena);
 [v _UART_print `(v ~T0 @X0 0 ef1`*uc ]
-"5
-[; ;./funtions.h: 5: unsigned char* ASCII_Con(int a, int b, int c);
-[; ;./funtions.h: 5: unsigned char* ASCII_Con(int a, int b, int c);
-[v _ASCII_Con `(*uc ~T0 @X0 0 ef3`i`i`i ]
+"38
+[; ;./funtions.h: 38: unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
+[; ;./funtions.h: 38: unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
+[v _ASCII_Con `(*uc ~T0 @X0 0 ef3`us`us`us ]
 "55 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -534,7 +534,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7 ./config.h
 [p x FOSC  =  INTOSC     ]
 "8
-[p x WDTE  =  ON        ]
+[p x WDTE  =  ON         ]
 "9
 [p x PWRTE  =  OFF       ]
 "10
@@ -564,7 +564,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7
 [p x FOSC  =  INTOSC     ]
 "8
-[p x WDTE  =  ON        ]
+[p x WDTE  =  ON         ]
 "9
 [p x PWRTE  =  OFF       ]
 "10
@@ -641,20 +641,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 36:         ADCON0bits.ADON = 0;
 [e = . . _ADCON0bits 0 0 -> -> 0 `i `uc ]
 "38
-[; ;main.c: 38:         int *B = BinTOBcd(((ADRESH<<8) + ADRESL));
-[v _B `*i ~T0 @X0 1 a ]
-[e = _B ( _BinTOBcd (1 -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `l ]
-"41
-[; ;main.c: 41:         UART_print(ASCII_Con(B[2], B[1], B[0]));
+[; ;main.c: 38:         unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
+[v _B `*us ~T0 @X0 1 a ]
+[e = _B ( _BinTOBcd (1 -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ul ]
+"39
+[; ;main.c: 39:         UART_print(ASCII_Con(B[2], B[1], B[0]));
 [e ( _UART_print (1 ( _ASCII_Con (3 , , *U + _B * -> -> 2 `i `x -> -> # *U _B `i `x *U + _B * -> -> 1 `i `x -> -> # *U _B `i `x *U + _B * -> -> 0 `i `x -> -> # *U _B `i `x ]
-"42
-[; ;main.c: 42:         return;
+"40
+[; ;main.c: 40:         return;
 [e $UE 358  ]
-"43
-[; ;main.c: 43:     }
+"41
+[; ;main.c: 41:     }
 }
 [e :U 359 ]
-"45
-[; ;main.c: 45: }
+"43
+[; ;main.c: 43: }
 [e :UE 358 ]
 }

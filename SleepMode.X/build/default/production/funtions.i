@@ -7,7 +7,6 @@
 # 1 "D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "funtions.c" 2
-
 # 1 "D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 1 3
 # 18 "D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4329,7 +4328,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 2 3
-# 2 "funtions.c" 2
+# 1 "funtions.c" 2
 
 # 1 "./config.h" 1
 
@@ -4355,75 +4354,92 @@ extern __bank0 __bit __timeout;
 #pragma config STVREN = ON
 #pragma config BORV = LO
 #pragma config LVP = ON
-# 3 "funtions.c" 2
+# 2 "funtions.c" 2
 
 # 1 "./funtions.h" 1
-int* BinTOBcd(long iADC);
-void readADC();
-void UART_write(char c);
+
+
+
+
+
+
+
+
+unsigned short* BinTOBcd(unsigned long iADC);
+
+
+
+
+
+void readADC(void);
+
+
+
+
+
+
+void UART_write(unsigned char c);
+
+
+
+
+
 void UART_print(unsigned char* cadena);
-unsigned char* ASCII_Con(int a, int b, int c);
-# 4 "funtions.c" 2
+# 38 "./funtions.h"
+unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
+# 3 "funtions.c" 2
+# 12 "funtions.c"
+unsigned short *BinTOBcd(unsigned long iADC) {
 
-
-
-
-
-
-
-int* BinTOBcd(long iADC)
-{
-
-    static int r[3];
-    r[0] = ((iADC*1000)/1024)%10;
-    r[1] = (((iADC*1000)/1024)/10)%10;
-    r[2] = (((iADC*1000)/1024)/10)/10;
+    static unsigned short r[3];
+    r[0] = ((iADC * 1000) / 1024) % 10;
+    r[1] = (((iADC * 1000) / 1024) / 10) % 10;
+    r[2] = (((iADC * 1000) / 1024) / 10) / 10;
 
     return r;
 
 }
 
 
-void readADC()
-{
+
+
+
+void readADC(void) {
+
     ADCON0bits.ADON = 1;
 
-    ADCON1bits.ADCS = 0b001;
-
-    ADCON0bits.CHS = 0b00000;
-
-    ADCON1bits.ADFM = 1;
-
     ADCON0bits.GO_nDONE = 1;
-# 43 "funtions.c"
 }
 
 
 
-void UART_write(char c)
-{
+
+
+
+void UART_write(unsigned char c) {
     TXREG = c;
-    while(TXSTAbits.TRMT == 0);
+    while (TXSTAbits.TRMT == 0);
 }
 
-void UART_print(unsigned char* cadena)
-{
-    while(*cadena != 0)
-    {
+
+
+
+
+void UART_print(unsigned char *cadena) {
+    while (*cadena != 0) {
         UART_write(*cadena);
         cadena++;
     }
     WDTCONbits.WDTPS = 0b01010;
     __asm("sleep");
 }
-
-unsigned char* ASCII_Con(int a, int b, int c)
-{
-    static char r[7];
-    r[0] = a+48;
+# 65 "funtions.c"
+unsigned char *ASCII_Con(unsigned short a,unsigned short b,unsigned short c) {
+    static unsigned char r[7];
+    r[0] = (char)(a + 48);
     r[1] = '.';
-    r[2] = b+48;
-    r[3] = c+48;
+    r[2] = (char)(b + 48);
+    r[3] = (char)(c + 48);;
     r[4] = ' ';
     r[5] = 'V';
     r[6] = '\0';

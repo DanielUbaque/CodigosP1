@@ -59,11 +59,6 @@ void init_IO(void)
     //Wachdog timer
     WDTCONbits.WDTPS = 0b01010;
     
-    
-    //Inicializamos el valor logico de las salidas
-    T1 = 0;
-    T2 = 0;
-    T3 = 0;
     ADis = 0;
     BDis = 0;
     CDis = 0;

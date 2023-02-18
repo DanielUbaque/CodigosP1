@@ -18,21 +18,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1913
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1913: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x09D)));
 [v _ADCON0bits `VS102 ~T0 @X0 0 e@157 ]
-"1974
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1974:     struct {
-[s S107 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S107 . ADPREF0 ADPREF1 ADNREF . ADCS0 ADCS1 ADCS2 ADFM ]
-"1984
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1984:     struct {
-[s S108 :2 `uc 1 :2 `uc 1 :3 `uc 1 ]
-[n S108 . ADPREF . ADCS ]
-"1973
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1973: typedef union {
-[u S106 `S107 1 `S108 1 ]
-[n S106 . . . ]
-"1990
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1990: extern volatile ADCON1bits_t ADCON1bits __attribute__((address(0x09E)));
-[v _ADCON1bits `VS106 ~T0 @X0 0 e@158 ]
 "3193
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 3193: extern volatile unsigned char TXREG __attribute__((address(0x19A)));
 [v _TXREG `Vuc ~T0 @X0 0 e@410 ]
@@ -539,7 +524,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7 ./config.h
 [p x FOSC  =  INTOSC     ]
 "8
-[p x WDTE  =  ON        ]
+[p x WDTE  =  ON         ]
 "9
 [p x PWRTE  =  OFF       ]
 "10
@@ -566,31 +551,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x BORV  =  LO         ]
 "23
 [p x LVP  =  ON          ]
-"11 funtions.c
-[; ;funtions.c: 11: int* BinTOBcd(long iADC)
-[v _BinTOBcd `(*i ~T0 @X0 1 ef1`l ]
-"12
-[; ;funtions.c: 12: {
+"12 funtions.c
+[; ;funtions.c: 12: unsigned short *BinTOBcd(unsigned long iADC) {
+[v _BinTOBcd `(*us ~T0 @X0 1 ef1`ul ]
 {
 [e :U _BinTOBcd ]
-"11
-[; ;funtions.c: 11: int* BinTOBcd(long iADC)
-[v _iADC `l ~T0 @X0 1 r1 ]
-"12
-[; ;funtions.c: 12: {
+[v _iADC `ul ~T0 @X0 1 r1 ]
 [f ]
 "14
-[; ;funtions.c: 14:     static int r[3];
-[v F2493 `i ~T0 @X0 -> 3 `i s r ]
+[; ;funtions.c: 14:     static unsigned short r[3];
+[v F2493 `us ~T0 @X0 -> 3 `i s r ]
 "15
-[; ;funtions.c: 15:     r[0] = ((iADC*1000)/1024)%10;
-[e = *U + &U F2493 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2493 `ui `ux -> % / * _iADC -> -> 1000 `i `l -> -> 1024 `i `l -> -> 10 `i `l `i ]
+[; ;funtions.c: 15:     r[0] = ((iADC * 1000) / 1024) % 10;
+[e = *U + &U F2493 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2493 `ui `ux -> % / * _iADC -> -> -> 1000 `i `l `ul -> -> -> 1024 `i `l `ul -> -> -> 10 `i `l `ul `us ]
 "16
-[; ;funtions.c: 16:     r[1] = (((iADC*1000)/1024)/10)%10;
-[e = *U + &U F2493 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2493 `ui `ux -> % / / * _iADC -> -> 1000 `i `l -> -> 1024 `i `l -> -> 10 `i `l -> -> 10 `i `l `i ]
+[; ;funtions.c: 16:     r[1] = (((iADC * 1000) / 1024) / 10) % 10;
+[e = *U + &U F2493 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2493 `ui `ux -> % / / * _iADC -> -> -> 1000 `i `l `ul -> -> -> 1024 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 10 `i `l `ul `us ]
 "17
-[; ;funtions.c: 17:     r[2] = (((iADC*1000)/1024)/10)/10;
-[e = *U + &U F2493 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2493 `ui `ux -> / / / * _iADC -> -> 1000 `i `l -> -> 1024 `i `l -> -> 10 `i `l -> -> 10 `i `l `i ]
+[; ;funtions.c: 17:     r[2] = (((iADC * 1000) / 1024) / 10) / 10;
+[e = *U + &U F2493 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2493 `ui `ux -> / / / * _iADC -> -> -> 1000 `i `l `ul -> -> -> 1024 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 10 `i `l `ul `us ]
 "19
 [; ;funtions.c: 19:     return r;
 [e ) &U F2493 ]
@@ -599,134 +578,103 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;funtions.c: 21: }
 [e :UE 354 ]
 }
-"24
-[; ;funtions.c: 24: void readADC()
+"27
+[; ;funtions.c: 27: void readADC(void) {
 [v _readADC `(v ~T0 @X0 1 ef ]
-"25
-[; ;funtions.c: 25: {
 {
 [e :U _readADC ]
 [f ]
-"26
-[; ;funtions.c: 26:     ADCON0bits.ADON = 1;
+"29
+[; ;funtions.c: 29:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"28
-[; ;funtions.c: 28:     ADCON1bits.ADCS = 0b001;
-[e = . . _ADCON1bits 1 2 -> -> 1 `i `uc ]
-"30
-[; ;funtions.c: 30:     ADCON0bits.CHS = 0b00000;
-[e = . . _ADCON0bits 1 2 -> -> 0 `i `uc ]
-"32
-[; ;funtions.c: 32:     ADCON1bits.ADFM = 1;
-[e = . . _ADCON1bits 0 7 -> -> 1 `i `uc ]
-"34
-[; ;funtions.c: 34:     ADCON0bits.GO_nDONE = 1;
+"31
+[; ;funtions.c: 31:     ADCON0bits.GO_nDONE = 1;
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
-"43
-[; ;funtions.c: 43: }
+"32
+[; ;funtions.c: 32: }
 [e :UE 355 ]
 }
-"47
-[; ;funtions.c: 47: void UART_write(char c)
+"39
+[; ;funtions.c: 39: void UART_write(unsigned char c) {
 [v _UART_write `(v ~T0 @X0 1 ef1`uc ]
-"48
-[; ;funtions.c: 48: {
 {
 [e :U _UART_write ]
-"47
-[; ;funtions.c: 47: void UART_write(char c)
 [v _c `uc ~T0 @X0 1 r1 ]
-"48
-[; ;funtions.c: 48: {
 [f ]
-"49
-[; ;funtions.c: 49:     TXREG = c;
-[e = _TXREG -> _c `uc ]
-"50
-[; ;funtions.c: 50:     while(TXSTAbits.TRMT == 0);
+"40
+[; ;funtions.c: 40:     TXREG = c;
+[e = _TXREG _c ]
+"41
+[; ;funtions.c: 41:     while (TXSTAbits.TRMT == 0);
 [e $U 357  ]
 [e :U 358 ]
 [e :U 357 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 358  ]
 [e :U 359 ]
-"51
-[; ;funtions.c: 51: }
+"42
+[; ;funtions.c: 42: }
 [e :UE 356 ]
 }
-"53
-[; ;funtions.c: 53: void UART_print(unsigned char* cadena)
+"48
+[; ;funtions.c: 48: void UART_print(unsigned char *cadena) {
 [v _UART_print `(v ~T0 @X0 1 ef1`*uc ]
-"54
-[; ;funtions.c: 54: {
 {
 [e :U _UART_print ]
-"53
-[; ;funtions.c: 53: void UART_print(unsigned char* cadena)
 [v _cadena `*uc ~T0 @X0 1 r1 ]
-"54
-[; ;funtions.c: 54: {
 [f ]
-"55
-[; ;funtions.c: 55:     while(*cadena != 0)
+"49
+[; ;funtions.c: 49:     while (*cadena != 0) {
 [e $U 361  ]
 [e :U 362 ]
-"56
-[; ;funtions.c: 56:     {
 {
-"57
-[; ;funtions.c: 57:         UART_write(*cadena);
-[e ( _UART_write (1 -> *U _cadena `uc ]
-"58
-[; ;funtions.c: 58:         cadena++;
+"50
+[; ;funtions.c: 50:         UART_write(*cadena);
+[e ( _UART_write (1 *U _cadena ]
+"51
+[; ;funtions.c: 51:         cadena++;
 [e ++ _cadena * -> -> 1 `i `x -> -> # *U _cadena `i `x ]
-"59
-[; ;funtions.c: 59:     }
+"52
+[; ;funtions.c: 52:     }
 }
 [e :U 361 ]
-"55
-[; ;funtions.c: 55:     while(*cadena != 0)
+"49
+[; ;funtions.c: 49:     while (*cadena != 0) {
 [e $ != -> *U _cadena `i -> 0 `i 362  ]
 [e :U 363 ]
-"60
-[; ;funtions.c: 60:     WDTCONbits.WDTPS = 0b01010;
+"53
+[; ;funtions.c: 53:     WDTCONbits.WDTPS = 0b01010;
 [e = . . _WDTCONbits 1 1 -> -> 10 `i `uc ]
-"61
-[; ;funtions.c: 61:     __asm("sleep");
+"54
+[; ;funtions.c: 54:     __asm("sleep");
 [; <" sleep ;# ">
-"62
-[; ;funtions.c: 62: }
+"55
+[; ;funtions.c: 55: }
 [e :UE 360 ]
 }
-"64
-[; ;funtions.c: 64: unsigned char* ASCII_Con(int a, int b, int c)
-[v _ASCII_Con `(*uc ~T0 @X0 1 ef3`i`i`i ]
 "65
-[; ;funtions.c: 65: {
+[; ;funtions.c: 65: unsigned char *ASCII_Con(unsigned short a,unsigned short b,unsigned short c) {
+[v _ASCII_Con `(*uc ~T0 @X0 1 ef3`us`us`us ]
 {
 [e :U _ASCII_Con ]
-"64
-[; ;funtions.c: 64: unsigned char* ASCII_Con(int a, int b, int c)
-[v _a `i ~T0 @X0 1 r1 ]
-[v _b `i ~T0 @X0 1 r2 ]
-[v _c `i ~T0 @X0 1 r3 ]
-"65
-[; ;funtions.c: 65: {
+[v _a `us ~T0 @X0 1 r1 ]
+[v _b `us ~T0 @X0 1 r2 ]
+[v _c `us ~T0 @X0 1 r3 ]
 [f ]
 "66
-[; ;funtions.c: 66:     static char r[7];
+[; ;funtions.c: 66:     static unsigned char r[7];
 [v F2503 `uc ~T0 @X0 -> 7 `i s r ]
 "67
-[; ;funtions.c: 67:     r[0] = a+48;
-[e = *U + &U F2503 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> + _a -> 48 `i `uc ]
+[; ;funtions.c: 67:     r[0] = (char)(a + 48);
+[e = *U + &U F2503 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> -> + -> _a `ui -> -> 48 `i `ui `uc `uc ]
 "68
 [; ;funtions.c: 68:     r[1] = '.';
 [e = *U + &U F2503 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> -> 46 `ui `uc ]
 "69
-[; ;funtions.c: 69:     r[2] = b+48;
-[e = *U + &U F2503 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> + _b -> 48 `i `uc ]
+[; ;funtions.c: 69:     r[2] = (char)(b + 48);
+[e = *U + &U F2503 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> -> + -> _b `ui -> -> 48 `i `ui `uc `uc ]
 "70
-[; ;funtions.c: 70:     r[3] = c+48;
-[e = *U + &U F2503 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> + _c -> 48 `i `uc ]
+[; ;funtions.c: 70:     r[3] = (char)(c + 48);;
+[e = *U + &U F2503 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> -> + -> _c `ui -> -> 48 `i `ui `uc `uc ]
 "71
 [; ;funtions.c: 71:     r[4] = ' ';
 [e = *U + &U F2503 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> -> 32 `ui `uc ]
@@ -738,7 +686,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = *U + &U F2503 * -> -> -> 6 `i `ui `ux -> -> # *U &U F2503 `ui `ux -> -> 0 `ui `uc ]
 "75
 [; ;funtions.c: 75:     return r;
-[e ) -> &U F2503 `*uc ]
+[e ) &U F2503 ]
 [e $UE 364  ]
 "76
 [; ;funtions.c: 76: }
