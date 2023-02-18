@@ -17,12 +17,11 @@ void main(void) {
     
     while(1)
     {
-        unsigned long iADC = readADC();
-        unsigned short *B = BinTOBcd(iADC);
-        //int B[3] = {7, 8, 10};
-        unsigned short* A = seg7(B);
-        UART_print(ASCII_Con(B[2], B[1], B[0]));
-        showNumbers(A);
+        unsigned long iADC = readADC();         //Leer ADC
+        unsigned short *B = BinTOBcd(iADC);     //Convertir a BCD
+        unsigned short* A = seg7(B);            //Formato 7 segmentos
+        UART_print(ASCII_Con(B[2], B[1], B[0]));//Enviamos el dato via UART
+        showNumbers(A);                         //Mostrar en el display
         
     }
     
