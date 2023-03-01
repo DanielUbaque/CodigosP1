@@ -38,20 +38,24 @@ void readADC(void) {
  */
 void UART_write(unsigned char c) {
     TXREG = c;
-    while (TXSTAbits.TRMT == 0);
 }
 
 /**
  * Realiza la trasmicion de una cadena de caracteres
  * @param cadena cadena de caracteres a transmitir
  */
-void printUART(unsigned char *cadena) {
-    while (*cadena != 0) {
-        UART_write(*cadena);
-        cadena++;
+void printUART(int n, unsigned char* cadena)
+{
+    static int i = 0;
+    if (i == n)
+    {
+        i = 0;
+        SLEEP();
+        return;
     }
-    WDTCONbits.WDTPS = 0b01010;
-    SLEEP();
+    
+    UART_write(*(cadena + i));
+    i = i+1;
 }
 
 /**
@@ -62,15 +66,12 @@ void printUART(unsigned char *cadena) {
  * @return cadena de caracteres de entrada formateada para
  * la trasmicion serie
  */
-unsigned char *ASCII_Con(unsigned short a,unsigned short b,unsigned short c) {
-    static unsigned char r[7];
-    r[0] = (char)(a + 48);
-    r[1] = '.';
-    r[2] = (char)(b + 48);
-    r[3] = (char)(c + 48);;
-    r[4] = ' ';
-    r[5] = 'V';
-    r[6] = '\0';
+unsigned char *ASCII_Con(unsigned short a, unsigned short b, unsigned short c) {
+    static unsigned char r[4];
+    r[0] = (char) (a + 48);
+    r[1] = (char) (b + 48);
+    r[2] = (char) (c + 48);
+    r[3] = '\n';
 
     return r;
 }

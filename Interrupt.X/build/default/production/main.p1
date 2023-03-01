@@ -20,17 +20,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "375
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 375: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
 [v _INTCONbits `VS30 ~T0 @X0 0 e@11 ]
-"2046
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 2046:     struct {
-[s S110 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S110 . LATA0 LATA1 LATA2 LATA3 LATA4 . LATA6 LATA7 ]
-"2045
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 2045: typedef union {
-[u S109 `S110 1 ]
-[n S109 . . ]
-"2057
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 2057: extern volatile LATAbits_t LATAbits __attribute__((address(0x10C)));
-[v _LATAbits `VS109 ~T0 @X0 0 e@268 ]
 "40 ./funtions.h
 [; ;./funtions.h: 40: void readADC(void);
 [; ;./funtions.h: 40: void readADC(void);
@@ -73,9 +62,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1913: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x09D)));
 [v _ADCON0bits `VS102 ~T0 @X0 0 e@157 ]
 "34 ./funtions.h
-[; ;./funtions.h: 34: unsigned short* BinTOBcd(unsigned long iADC);
-[; ;./funtions.h: 34: unsigned short* BinTOBcd(unsigned long iADC);
-[v _BinTOBcd `(*us ~T0 @X0 0 ef1`ul ]
+[; ;./funtions.h: 34: unsigned short* mathBCD(unsigned long iADC);
+[; ;./funtions.h: 34: unsigned short* mathBCD(unsigned long iADC);
+[v _mathBCD `(*us ~T0 @X0 0 ef1`ul ]
 "1868 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1868: extern volatile unsigned char ADRESH __attribute__((address(0x09C)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
@@ -83,17 +72,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1848: extern volatile unsigned char ADRESL __attribute__((address(0x09B)));
 [v _ADRESL `Vuc ~T0 @X0 0 e@155 ]
 "25 ./funtions.h
-[; ;./funtions.h: 25: unsigned short * seg7(const unsigned short *iBCD);
-[; ;./funtions.h: 25: unsigned short * seg7(const unsigned short *iBCD);
-[v _seg7 `(*us ~T0 @X0 0 ef1`*Cus ]
-"53
-[; ;./funtions.h: 53: void UART_print(unsigned char* cadena);
-[; ;./funtions.h: 53: void UART_print(unsigned char* cadena);
-[v _UART_print `(v ~T0 @X0 0 ef1`*uc ]
+[; ;./funtions.h: 25: unsigned short * math7Seg(const unsigned short *iBCD);
+[; ;./funtions.h: 25: unsigned short * math7Seg(const unsigned short *iBCD);
+[v _math7Seg `(*us ~T0 @X0 0 ef1`*Cus ]
 "63
 [; ;./funtions.h: 63: unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 [; ;./funtions.h: 63: unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 [v _ASCII_Con `(*uc ~T0 @X0 0 ef3`us`us`us ]
+"53
+[; ;./funtions.h: 53: void printUART(int n, unsigned char* cadena);
+[; ;./funtions.h: 53: void printUART(int n, unsigned char* cadena);
+[v _printUART `(v ~T0 @X0 0 ef2`i`*uc ]
 "55 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -638,114 +627,130 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17
 [; ;main.c: 17:     init_IO();
 [e ( _init_IO ..  ]
-"20
-[; ;main.c: 20:     while(1)
+"19
+[; ;main.c: 19:     while(1)
 [e :U 356 ]
-"21
-[; ;main.c: 21:     {
+"20
+[; ;main.c: 20:     {
 {
-"24
-[; ;main.c: 24:     }
+"21
+[; ;main.c: 21:     }
 }
 [e :U 355 ]
 [e $U 356  ]
 [e :U 357 ]
-"26
-[; ;main.c: 26:     return;
+"23
+[; ;main.c: 23:     return;
 [e $UE 354  ]
-"27
-[; ;main.c: 27: }
+"24
+[; ;main.c: 24: }
 [e :UE 354 ]
 }
 [v $root$_interrupciones `(v ~T0 @X0 0 e ]
-"29
-[; ;main.c: 29: void __attribute__((picinterrupt(("")))) interrupciones(void){
+"26
+[; ;main.c: 26: void __attribute__((picinterrupt(("")))) interrupciones(void){
 [v _interrupciones `(v ~T1 @X0 1 ef ]
 {
 [e :U _interrupciones ]
 [f ]
-"31
-[; ;main.c: 31:     static int count = 0;
-[v F2521 `i ~T0 @X0 1 s count ]
-[i F2521
+"29
+[; ;main.c: 29:     static int count = 0;
+[v F2523 `i ~T0 @X0 1 s count ]
+[i F2523
 -> 0 `i
 ]
-"32
-[; ;main.c: 32:     static unsigned short* A ;
-[v F2522 `*us ~T0 @X0 1 s A ]
-"34
-[; ;main.c: 34:     if(INTCONbits.TMR0IF == 1){
+"30
+[; ;main.c: 30:     static unsigned short* displayData;
+[v F2524 `*us ~T0 @X0 1 s displayData ]
+"31
+[; ;main.c: 31:     static unsigned char* Cadena;
+[v F2525 `*uc ~T0 @X0 1 s Cadena ]
+"33
+[; ;main.c: 33:     if(INTCONbits.TMR0IF == 1){
 [e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 359  ]
 {
+"34
+[; ;main.c: 34:         if(count == 100)
+[e $ ! == F2523 -> 100 `i 360  ]
 "35
-[; ;main.c: 35:         if(count == 40)
-[e $ ! == F2521 -> 40 `i 360  ]
-"36
-[; ;main.c: 36:         {
+[; ;main.c: 35:         {
 {
-"37
-[; ;main.c: 37:             LATAbits.LATA4 = ! LATAbits.LATA4;
-[e = . . _LATAbits 0 4 -> -> ! != -> . . _LATAbits 0 4 `i -> 0 `i `i `uc ]
-"38
-[; ;main.c: 38:             readADC();
+"36
+[; ;main.c: 36:             readADC();
 [e ( _readADC ..  ]
-"39
-[; ;main.c: 39:             count = 0;
-[e = F2521 -> 0 `i ]
-"40
-[; ;main.c: 40:         }
+"37
+[; ;main.c: 37:             count = 0;
+[e = F2523 -> 0 `i ]
+"38
+[; ;main.c: 38:         }
 }
 [e :U 360 ]
-"42
-[; ;main.c: 42:         count++;
-[e ++ F2521 -> 1 `i ]
-"43
-[; ;main.c: 43:         TMR0 = 158;
-[e = _TMR0 -> -> 158 `i `uc ]
-"44
-[; ;main.c: 44:         INTCONbits.TMR0IF = 0;
+"39
+[; ;main.c: 39:         count++;
+[e ++ F2523 -> 1 `i ]
+"40
+[; ;main.c: 40:         TMR0 = 217;
+[e = _TMR0 -> -> 217 `i `uc ]
+"41
+[; ;main.c: 41:         INTCONbits.TMR0IF = 0;
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"45
-[; ;main.c: 45:         showNumbers(A, count);
-[e ( _showNumbers (2 , F2522 F2521 ]
-"46
-[; ;main.c: 46:         return;
+"42
+[; ;main.c: 42:         showNumbers(displayData, count);
+[e ( _showNumbers (2 , F2524 F2523 ]
+"43
+[; ;main.c: 43:         return;
 [e $UE 358  ]
-"47
-[; ;main.c: 47:     }
+"44
+[; ;main.c: 44:     }
 }
 [e :U 359 ]
-"48
-[; ;main.c: 48:     if(PIR1bits.ADIF == 1){
+"45
+[; ;main.c: 45:     if(PIR1bits.ADIF == 1){
 [e $ ! == -> . . _PIR1bits 0 6 `i -> 1 `i 361  ]
 {
-"50
-[; ;main.c: 50:         LATAbits.LATA6 = ! LATAbits.LATA6;
-[e = . . _LATAbits 0 6 -> -> ! != -> . . _LATAbits 0 6 `i -> 0 `i `i `uc ]
-"51
-[; ;main.c: 51:         PIR1bits.ADIF = 0;
+"47
+[; ;main.c: 47:         PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"52
-[; ;main.c: 52:         ADCON0bits.ADON = 0;
+"48
+[; ;main.c: 48:         ADCON0bits.ADON = 0;
 [e = . . _ADCON0bits 0 0 -> -> 0 `i `uc ]
+"50
+[; ;main.c: 50:         unsigned short *numberBCD =
+[v _numberBCD `*us ~T0 @X0 1 a ]
+[e = _numberBCD ( _mathBCD (1 -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ul ]
+"52
+[; ;main.c: 52:         displayData = math7Seg(numberBCD);
+[e = F2524 ( _math7Seg (1 -> _numberBCD `*Cus ]
 "54
-[; ;main.c: 54:         unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
-[v _B `*us ~T0 @X0 1 a ]
-[e = _B ( _BinTOBcd (1 -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ul ]
-"57
-[; ;main.c: 57:         A = seg7(B);
-[e = F2522 ( _seg7 (1 -> _B `*Cus ]
-"58
-[; ;main.c: 58:         UART_print(ASCII_Con(B[2], B[1], B[0]));
-[e ( _UART_print (1 ( _ASCII_Con (3 , , *U + _B * -> -> 2 `i `x -> -> # *U _B `i `x *U + _B * -> -> 1 `i `x -> -> # *U _B `i `x *U + _B * -> -> 0 `i `x -> -> # *U _B `i `x ]
-"59
-[; ;main.c: 59:         return;
+[; ;main.c: 54:         Cadena = ASCII_Con(numberBCD[2], numberBCD[1], numberBCD[0]);
+[e = F2525 ( _ASCII_Con (3 , , *U + _numberBCD * -> -> 2 `i `x -> -> # *U _numberBCD `i `x *U + _numberBCD * -> -> 1 `i `x -> -> # *U _numberBCD `i `x *U + _numberBCD * -> -> 0 `i `x -> -> # *U _numberBCD `i `x ]
+"55
+[; ;main.c: 55:         printUART(4, Cadena);
+[e ( _printUART (2 , -> 4 `i F2525 ]
+"56
+[; ;main.c: 56:         return;
 [e $UE 358  ]
-"60
-[; ;main.c: 60:     }
+"57
+[; ;main.c: 57:     }
 }
 [e :U 361 ]
-"62
-[; ;main.c: 62: }
+"58
+[; ;main.c: 58:     if(PIR1bits.TXIF == 1)
+[e $ ! == -> . . _PIR1bits 0 4 `i -> 1 `i 362  ]
+"59
+[; ;main.c: 59:     {
+{
+"60
+[; ;main.c: 60:         PIR1bits.TXIF = 0;
+[e = . . _PIR1bits 0 4 -> -> 0 `i `uc ]
+"61
+[; ;main.c: 61:         printUART(4, Cadena);
+[e ( _printUART (2 , -> 4 `i F2525 ]
+"63
+[; ;main.c: 63:     }
+}
+[e :U 362 ]
+"65
+[; ;main.c: 65: }
 [e :UE 358 ]
 }

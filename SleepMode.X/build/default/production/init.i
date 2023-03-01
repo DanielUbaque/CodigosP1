@@ -4369,7 +4369,7 @@ extern __bank0 __bit __timeout;
 
 
 
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4388,7 +4388,7 @@ void UART_write(unsigned char c);
 
 
 
-void UART_print(unsigned char* cadena);
+void printUART(unsigned char* cadena);
 # 38 "./funtions.h"
 unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 5 "./init.h" 2
@@ -4490,5 +4490,6 @@ void init_UART(void)
     TXSTAbits.BRGH = 1;
     SPBRG = 25;
     RCSTAbits.SPEN = 1;
+    PIE1bits.TXIE = 1;
 
 }

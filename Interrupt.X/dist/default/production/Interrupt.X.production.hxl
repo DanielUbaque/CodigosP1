@@ -9,12 +9,12 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 3h		(dist/default/production\Interrupt.X.production.hex)
-  8h - 887h		(dist/default/production\Interrupt.X.production.hex)
+  8h - 88Bh		(dist/default/production\Interrupt.X.production.hex)
   10000h - 10007h		(dist/default/production\Interrupt.X.production.hex)
   1000Eh - 10011h		(dist/default/production\Interrupt.X.production.hex)
  Unused ranges:
   4h - 7h
-  888h - FFFFh
+  88Ch - FFFFh
   10008h - 1000Dh
 
 ### Hex Memory Map ###
@@ -160,7 +160,7 @@
 00000850 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000860 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000870 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000880 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
+00000880 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- --
 ----------------------------------------------------------
 00010000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- H1 H1
 00010010 | H1 H1 -- -- -- -- -- -- -- -- -- -- -- -- -- --

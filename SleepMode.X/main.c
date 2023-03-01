@@ -23,7 +23,7 @@ void main(void) {
     return;
 }
 
-void __interrupt() INT_TMR0(void){
+void __interrupt() Interrupciones(void){
     
     if(PIR1bits.ADIF == 1){         //Cuando termino de realizar la convercion
         
@@ -35,7 +35,6 @@ void __interrupt() INT_TMR0(void){
         printUART(ASCII_Con(numberBCD[2], numberBCD[1], numberBCD[0]));
         return;
     }
-    
 }
 
 

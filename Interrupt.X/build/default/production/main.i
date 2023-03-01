@@ -4374,9 +4374,9 @@ void showNumber(unsigned short digit);
 # 16 "./funtions.h"
 void showNumbers(unsigned short *digits, int n);
 # 25 "./funtions.h"
-unsigned short * seg7(const unsigned short *iBCD);
+unsigned short * math7Seg(const unsigned short *iBCD);
 # 34 "./funtions.h"
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4395,7 +4395,7 @@ void UART_write(unsigned char c);
 
 
 
-void UART_print(unsigned char* cadena);
+void printUART(int n, unsigned char* cadena);
 # 63 "./funtions.h"
 unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 11 "main.c" 2
@@ -4440,9 +4440,9 @@ void showNumber(unsigned short digit);
 # 16 "./funtions.h"
 void showNumbers(unsigned short *digits, int n);
 # 25 "./funtions.h"
-unsigned short * seg7(const unsigned short *iBCD);
+unsigned short * math7Seg(const unsigned short *iBCD);
 # 34 "./funtions.h"
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4461,7 +4461,7 @@ void UART_write(unsigned char c);
 
 
 
-void UART_print(unsigned char* cadena);
+void printUART(int n, unsigned char* cadena);
 # 63 "./funtions.h"
 unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 5 "./init.h" 2
@@ -4481,11 +4481,8 @@ void init_UART(void);
 void main(void) {
     init_IO();
 
-
     while(1)
     {
-
-
     }
 
     return;
@@ -4493,35 +4490,41 @@ void main(void) {
 
 void __attribute__((picinterrupt(("")))) interrupciones(void){
 
+
     static int count = 0;
-    static unsigned short* A ;
+    static unsigned short* displayData;
+    static unsigned char* Cadena;
 
     if(INTCONbits.TMR0IF == 1){
-        if(count == 40)
+        if(count == 100)
         {
-            LATAbits.LATA4 = ! LATAbits.LATA4;
             readADC();
             count = 0;
         }
-
         count++;
-        TMR0 = 158;
+        TMR0 = 217;
         INTCONbits.TMR0IF = 0;
-        showNumbers(A, count);
+        showNumbers(displayData, count);
         return;
     }
     if(PIR1bits.ADIF == 1){
 
-        LATAbits.LATA6 = ! LATAbits.LATA6;
         PIR1bits.ADIF = 0;
         ADCON0bits.ADON = 0;
 
-        unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
+        unsigned short *numberBCD =
+        mathBCD((unsigned long)((ADRESH<<8) + ADRESL));
+        displayData = math7Seg(numberBCD);
 
-
-        A = seg7(B);
-        UART_print(ASCII_Con(B[2], B[1], B[0]));
+        Cadena = ASCII_Con(numberBCD[2], numberBCD[1], numberBCD[0]);
+        printUART(4, Cadena);
         return;
+    }
+    if(PIR1bits.TXIF == 1)
+    {
+        PIR1bits.TXIF = 0;
+        printUART(4, Cadena);
+
     }
 
 }

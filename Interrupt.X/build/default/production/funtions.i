@@ -4366,9 +4366,9 @@ void showNumber(unsigned short digit);
 # 16 "./funtions.h"
 void showNumbers(unsigned short *digits, int n);
 # 25 "./funtions.h"
-unsigned short * seg7(const unsigned short *iBCD);
+unsigned short * math7Seg(const unsigned short *iBCD);
 # 34 "./funtions.h"
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4387,12 +4387,12 @@ void UART_write(unsigned char c);
 
 
 
-void UART_print(unsigned char* cadena);
+void printUART(int n, unsigned char* cadena);
 # 63 "./funtions.h"
 unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 3 "funtions.c" 2
 # 12 "funtions.c"
-unsigned short *BinTOBcd(unsigned long iADC) {
+unsigned short *mathBCD(unsigned long iADC) {
 
     static unsigned short r[3];
     r[0] = ((iADC * 1000) / 1024) % 10;
@@ -4403,7 +4403,7 @@ unsigned short *BinTOBcd(unsigned long iADC) {
 
 }
 # 30 "funtions.c"
-unsigned short *seg7(const unsigned short *iBCD) {
+unsigned short *math7Seg(const unsigned short *iBCD) {
 
     unsigned short numbers[10] = {
 
@@ -4471,7 +4471,6 @@ void showNumbers(unsigned short *digits, int n) {
 
 
 
-
 void readADC(void) {
 
     ADCON0bits.ADON = 1;
@@ -4493,13 +4492,19 @@ void UART_write(unsigned char c) {
 
 
 
-void UART_print(unsigned char *cadena) {
-    while (*cadena != 0) {
-        UART_write(*cadena);
-        cadena++;
+void printUART(int n, unsigned char* cadena)
+{
+    static int i = 0;
+    if (i == n)
+    {
+        i = 0;
+        return;
     }
+
+    UART_write(*(cadena + i));
+    i = i+1;
 }
-# 144 "funtions.c"
+# 150 "funtions.c"
 unsigned char *ASCII_Con(unsigned short a,unsigned short b,unsigned short c) {
     static unsigned char r[7];
     r[0] = (char)(a + 48);

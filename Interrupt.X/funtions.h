@@ -50,7 +50,7 @@ void UART_write(unsigned char c);
  * Realiza la trasmicion de una cadena de caracteres
  * @param cadena cadena de caracteres a transmitir
  */
-void printUART(unsigned char* cadena);
+void printUART(int n, unsigned char* cadena);
 
 /**
  * Genera una cadena de caracteres

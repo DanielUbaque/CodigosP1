@@ -4373,7 +4373,7 @@ extern __bank0 __bit __timeout;
 
 
 
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4392,7 +4392,7 @@ void UART_write(unsigned char c);
 
 
 
-void UART_print(unsigned char* cadena);
+void printUART(unsigned char* cadena);
 # 38 "./funtions.h"
 unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 11 "main.c" 2
@@ -4436,7 +4436,7 @@ unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 
 
 
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4455,7 +4455,7 @@ void UART_write(unsigned char c);
 
 
 
-void UART_print(unsigned char* cadena);
+void printUART(unsigned char* cadena);
 # 38 "./funtions.h"
 unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 5 "./init.h" 2
@@ -4471,28 +4471,23 @@ void init_UART(void);
 void main(void) {
     init_IO();
 
-
     while(1)
     {
         readADC();
-
     }
-
     return;
 }
 
-void __attribute__((picinterrupt(("")))) INT_TMR0(void){
-
-
+void __attribute__((picinterrupt(("")))) Interrupciones(void){
 
     if(PIR1bits.ADIF == 1){
 
         PIR1bits.ADIF = 0;
         ADCON0bits.ADON = 0;
 
-        unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
-        UART_print(ASCII_Con(B[2], B[1], B[0]));
+        unsigned short *numberBCD =
+        mathBCD((unsigned long)((ADRESH<<8) + ADRESL));
+        printUART(ASCII_Con(numberBCD[2], numberBCD[1], numberBCD[0]));
         return;
     }
-
 }

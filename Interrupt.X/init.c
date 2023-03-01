@@ -91,6 +91,7 @@ void init_UART(void)
     TXSTAbits.BRGH = 1;             //Velocidad de convercion alta
     SPBRG = 25;                     //Transmicion a 9600 baudios
     RCSTAbits.SPEN = 1;             //Configuracion interna de pines
+    PIE1bits.TXIE = 1;              //Interrupcion de transmición
     
 }
 

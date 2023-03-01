@@ -16,11 +16,8 @@
 void main(void) {
     init_IO();
     
-    
     while(1)
-    {
-        
-        
+    { 
     }
     
     return;
@@ -31,6 +28,7 @@ void __interrupt() interrupciones(void){
     // Declaracion de variables
     static int count = 0;
     static unsigned short* displayData;
+    static unsigned char* Cadena;
     
     if(INTCONbits.TMR0IF == 1){             //Ha trascurrido 10 ms
         if(count == 100)                    //Ha transcurrido 1 segundo
@@ -52,8 +50,16 @@ void __interrupt() interrupciones(void){
         unsigned short *numberBCD = 
         mathBCD((unsigned long)((ADRESH<<8) + ADRESL));
         displayData = math7Seg(numberBCD);
-        printUART(ASCII_Con(numberBCD[2], numberBCD[1], numberBCD[0]));
+        
+        Cadena = ASCII_Con(numberBCD[2], numberBCD[1], numberBCD[0]);
+        printUART(4, Cadena);
         return;
+    }
+    if(PIR1bits.TXIF == 1)
+    {
+        PIR1bits.TXIF = 0;
+        printUART(4, Cadena);
+        
     }
     
 }

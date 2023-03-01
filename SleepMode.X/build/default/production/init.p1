@@ -940,7 +940,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "94
 [; ;init.c: 94:     RCSTAbits.SPEN = 1;
 [e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-"96
-[; ;init.c: 96: }
+"95
+[; ;init.c: 95:     PIE1bits.TXIE = 1;
+[e = . . _PIE1bits 0 4 -> -> 1 `i `uc ]
+"97
+[; ;init.c: 97: }
 [e :UE 355 ]
 }

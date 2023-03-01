@@ -4365,7 +4365,7 @@ extern __bank0 __bit __timeout;
 
 
 
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4384,12 +4384,12 @@ void UART_write(unsigned char c);
 
 
 
-void UART_print(unsigned char* cadena);
+void printUART(unsigned char* cadena);
 # 38 "./funtions.h"
 unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 # 3 "funtions.c" 2
 # 12 "funtions.c"
-unsigned short *BinTOBcd(unsigned long iADC) {
+unsigned short *mathBCD(unsigned long iADC) {
 
     static unsigned short r[3];
     r[0] = ((iADC * 1000) / 1024) % 10;
@@ -4418,31 +4418,32 @@ void readADC(void) {
 
 void UART_write(unsigned char c) {
     TXREG = c;
-    while (TXSTAbits.TRMT == 0);
 }
 
 
 
 
 
-void UART_print(unsigned char *cadena) {
-    while (*cadena != 0) {
-        UART_write(*cadena);
-        cadena++;
+void printUART(int n, unsigned char* cadena)
+{
+    static int i = 0;
+    if (i == n)
+    {
+        i = 0;
+        __asm("sleep");
+        return;
     }
-    WDTCONbits.WDTPS = 0b01010;
-    __asm("sleep");
+
+    UART_write(*(cadena + i));
+    i = i+1;
 }
-# 65 "funtions.c"
-unsigned char *ASCII_Con(unsigned short a,unsigned short b,unsigned short c) {
-    static unsigned char r[7];
-    r[0] = (char)(a + 48);
-    r[1] = '.';
-    r[2] = (char)(b + 48);
-    r[3] = (char)(c + 48);;
-    r[4] = ' ';
-    r[5] = 'V';
-    r[6] = '\0';
+# 69 "funtions.c"
+unsigned char *ASCII_Con(unsigned short a, unsigned short b, unsigned short c) {
+    static unsigned char r[4];
+    r[0] = (char) (a + 48);
+    r[1] = (char) (b + 48);
+    r[2] = (char) (c + 48);
+    r[3] = '\n';
 
     return r;
 }

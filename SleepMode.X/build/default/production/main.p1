@@ -40,9 +40,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1913: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x09D)));
 [v _ADCON0bits `VS102 ~T0 @X0 0 e@157 ]
 "9 ./funtions.h
-[; ;./funtions.h: 9: unsigned short* BinTOBcd(unsigned long iADC);
-[; ;./funtions.h: 9: unsigned short* BinTOBcd(unsigned long iADC);
-[v _BinTOBcd `(*us ~T0 @X0 0 ef1`ul ]
+[; ;./funtions.h: 9: unsigned short* mathBCD(unsigned long iADC);
+[; ;./funtions.h: 9: unsigned short* mathBCD(unsigned long iADC);
+[v _mathBCD `(*us ~T0 @X0 0 ef1`ul ]
 "1868 D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1868: extern volatile unsigned char ADRESH __attribute__((address(0x09C)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
@@ -50,9 +50,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1848: extern volatile unsigned char ADRESL __attribute__((address(0x09B)));
 [v _ADRESL `Vuc ~T0 @X0 0 e@155 ]
 "28 ./funtions.h
-[; ;./funtions.h: 28: void UART_print(unsigned char* cadena);
-[; ;./funtions.h: 28: void UART_print(unsigned char* cadena);
-[v _UART_print `(v ~T0 @X0 0 ef1`*uc ]
+[; ;./funtions.h: 28: void printUART(unsigned char* cadena);
+[; ;./funtions.h: 28: void printUART(unsigned char* cadena);
+[v _printUART `(v ~T0 @X0 0 ef1`*uc ]
 "38
 [; ;./funtions.h: 38: unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
 [; ;./funtions.h: 38: unsigned char* ASCII_Con(unsigned short a, unsigned short b, unsigned short c);
@@ -601,60 +601,60 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17
 [; ;main.c: 17:     init_IO();
 [e ( _init_IO ..  ]
-"20
-[; ;main.c: 20:     while(1)
+"19
+[; ;main.c: 19:     while(1)
 [e :U 356 ]
-"21
-[; ;main.c: 21:     {
+"20
+[; ;main.c: 20:     {
 {
-"22
-[; ;main.c: 22:         readADC();
+"21
+[; ;main.c: 21:         readADC();
 [e ( _readADC ..  ]
-"24
-[; ;main.c: 24:     }
+"22
+[; ;main.c: 22:     }
 }
 [e :U 355 ]
 [e $U 356  ]
 [e :U 357 ]
-"26
-[; ;main.c: 26:     return;
+"23
+[; ;main.c: 23:     return;
 [e $UE 354  ]
-"27
-[; ;main.c: 27: }
+"24
+[; ;main.c: 24: }
 [e :UE 354 ]
 }
-[v $root$_INT_TMR0 `(v ~T0 @X0 0 e ]
-"29
-[; ;main.c: 29: void __attribute__((picinterrupt(("")))) INT_TMR0(void){
-[v _INT_TMR0 `(v ~T1 @X0 1 ef ]
+[v $root$_Interrupciones `(v ~T0 @X0 0 e ]
+"26
+[; ;main.c: 26: void __attribute__((picinterrupt(("")))) Interrupciones(void){
+[v _Interrupciones `(v ~T1 @X0 1 ef ]
 {
-[e :U _INT_TMR0 ]
+[e :U _Interrupciones ]
 [f ]
-"33
-[; ;main.c: 33:     if(PIR1bits.ADIF == 1){
+"28
+[; ;main.c: 28:     if(PIR1bits.ADIF == 1){
 [e $ ! == -> . . _PIR1bits 0 6 `i -> 1 `i 359  ]
 {
-"35
-[; ;main.c: 35:         PIR1bits.ADIF = 0;
+"30
+[; ;main.c: 30:         PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"36
-[; ;main.c: 36:         ADCON0bits.ADON = 0;
+"31
+[; ;main.c: 31:         ADCON0bits.ADON = 0;
 [e = . . _ADCON0bits 0 0 -> -> 0 `i `uc ]
-"38
-[; ;main.c: 38:         unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
-[v _B `*us ~T0 @X0 1 a ]
-[e = _B ( _BinTOBcd (1 -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ul ]
-"39
-[; ;main.c: 39:         UART_print(ASCII_Con(B[2], B[1], B[0]));
-[e ( _UART_print (1 ( _ASCII_Con (3 , , *U + _B * -> -> 2 `i `x -> -> # *U _B `i `x *U + _B * -> -> 1 `i `x -> -> # *U _B `i `x *U + _B * -> -> 0 `i `x -> -> # *U _B `i `x ]
-"40
-[; ;main.c: 40:         return;
+"33
+[; ;main.c: 33:         unsigned short *numberBCD =
+[v _numberBCD `*us ~T0 @X0 1 a ]
+[e = _numberBCD ( _mathBCD (1 -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ul ]
+"35
+[; ;main.c: 35:         printUART(ASCII_Con(numberBCD[2], numberBCD[1], numberBCD[0]));
+[e ( _printUART (1 ( _ASCII_Con (3 , , *U + _numberBCD * -> -> 2 `i `x -> -> # *U _numberBCD `i `x *U + _numberBCD * -> -> 1 `i `x -> -> # *U _numberBCD `i `x *U + _numberBCD * -> -> 0 `i `x -> -> # *U _numberBCD `i `x ]
+"36
+[; ;main.c: 36:         return;
 [e $UE 358  ]
-"41
-[; ;main.c: 41:     }
+"37
+[; ;main.c: 37:     }
 }
 [e :U 359 ]
-"43
-[; ;main.c: 43: }
+"38
+[; ;main.c: 38: }
 [e :UE 358 ]
 }
