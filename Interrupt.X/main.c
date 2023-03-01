@@ -28,34 +28,31 @@ void main(void) {
 
 void __interrupt() interrupciones(void){
     
+    // Declaracion de variables
     static int count = 0;
-    static unsigned short* A ;
+    static unsigned short* displayData;
     
-    if(INTCONbits.TMR0IF == 1){
-        if(count == 40)
+    if(INTCONbits.TMR0IF == 1){             //Ha trascurrido 10 ms
+        if(count == 100)                    //Ha transcurrido 1 segundo
         {
-            ADis = ! ADis;
             readADC();
             count = 0;
         }
-        //ADis = ! ADis; 
         count++;
-        TMR0 = 158;
-        INTCONbits.TMR0IF = 0;
-        showNumbers(A, count);
+        TMR0 = 217;
+        INTCONbits.TMR0IF = 0;              //Reiniciamos la bandera
+        showNumbers(displayData, count);
         return;
     }
-    if(PIR1bits.ADIF == 1){
+    if(PIR1bits.ADIF == 1){                 //Finalizo la convercion ADC
         
-        BDis = ! BDis; 
         PIR1bits.ADIF = 0;
         ADCON0bits.ADON = 0;
         
-        unsigned short *B = BinTOBcd((unsigned long)((ADRESH<<8) + ADRESL));
-        //int *B = BinTOBcd(iADC);
-        //int B[3] = {7, 8, 10};
-        A = seg7(B);
-        UART_print(ASCII_Con(B[2], B[1], B[0]));
+        unsigned short *numberBCD = 
+        mathBCD((unsigned long)((ADRESH<<8) + ADRESL));
+        displayData = math7Seg(numberBCD);
+        printUART(ASCII_Con(numberBCD[2], numberBCD[1], numberBCD[0]));
         return;
     }
     

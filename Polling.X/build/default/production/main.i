@@ -4374,9 +4374,9 @@ void showNumber(unsigned short digit);
 # 16 "./funtions.h"
 void showNumbers(unsigned short *digits);
 # 25 "./funtions.h"
-unsigned short * seg7(const unsigned short *iBCD);
+unsigned short * Matematicas_7seg(const unsigned short *iBCD);
 # 34 "./funtions.h"
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4444,9 +4444,9 @@ void showNumber(unsigned short digit);
 # 16 "./funtions.h"
 void showNumbers(unsigned short *digits);
 # 25 "./funtions.h"
-unsigned short * seg7(const unsigned short *iBCD);
+unsigned short * Matematicas_7seg(const unsigned short *iBCD);
 # 34 "./funtions.h"
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4483,14 +4483,18 @@ void init_IO(void);
 void main(void) {
     init_IO();
 
+
+    unsigned long dataADC = 0;
+    unsigned short *numerosBCD = 0;
+    unsigned short *formato7segmentos = 0;
+
     while(1)
     {
-        unsigned long iADC = readADC();
-        unsigned short *B = BinTOBcd(iADC);
-
-        unsigned short* A = seg7(B);
-        UART_print(ASCII_Con(B[2], B[1], B[0]));
-        showNumbers(A);
+        dataADC = readADC();
+        numerosBCD = mathBCD(dataADC);
+        formato7segmentos = Matematicas_7seg(numerosBCD);
+        UART_print(ASCII_Con(numerosBCD[2], numerosBCD[1], numerosBCD[0]));
+        showNumbers(formato7segmentos);
 
     }
 

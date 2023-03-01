@@ -6,7 +6,7 @@
  * BCD de la lectura de entrada, siendo el primer valor
  * el menos significativo o la lectura de 10 mV
  */
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 /**
  * Comienza la converción del ADC, al final del proceso se desactiva
@@ -25,7 +25,7 @@ void UART_write(unsigned char c);
  * Realiza la trasmicion de una cadena de caracteres
  * @param cadena cadena de caracteres a transmitir
  */
-void UART_print(unsigned char* cadena);
+void printUART(unsigned char* cadena);
 
 /**
  * Genera una cadena de caracteres

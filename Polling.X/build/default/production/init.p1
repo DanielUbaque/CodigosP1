@@ -66,6 +66,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1232
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1232: extern volatile TRISBbits_t TRISBbits __attribute__((address(0x08D)));
 [v _TRISBbits `VS72 ~T0 @X0 0 e@141 ]
+"1894
+[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1894:     struct {
+[s S103 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S103 . ADON GO_nDONE CHS0 CHS1 CHS2 CHS3 CHS4 ]
+"1903
+[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1903:     struct {
+[s S104 :1 `uc 1 :1 `uc 1 :5 `uc 1 ]
+[n S104 . . ADGO CHS ]
+"1908
+[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1908:     struct {
+[s S105 :1 `uc 1 :1 `uc 1 ]
+[n S105 . . GO ]
+"1893
+[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1893: typedef union {
+[u S102 `S103 1 `S104 1 `S105 1 ]
+[n S102 . . . . ]
+"1913
+[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1913: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x09D)));
+[v _ADCON0bits `VS102 ~T0 @X0 0 e@157 ]
 "2464
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 2464:     struct {
 [s S128 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -96,25 +115,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1990
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1990: extern volatile ADCON1bits_t ADCON1bits __attribute__((address(0x09E)));
 [v _ADCON1bits `VS106 ~T0 @X0 0 e@158 ]
-"1894
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1894:     struct {
-[s S103 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S103 . ADON GO_nDONE CHS0 CHS1 CHS2 CHS3 CHS4 ]
-"1903
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1903:     struct {
-[s S104 :1 `uc 1 :1 `uc 1 :5 `uc 1 ]
-[n S104 . . ADGO CHS ]
-"1908
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1908:     struct {
-[s S105 :1 `uc 1 :1 `uc 1 ]
-[n S105 . . GO ]
-"1893
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1893: typedef union {
-[u S102 `S103 1 `S104 1 `S105 1 ]
-[n S102 . . . . ]
-"1913
-[; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 1913: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x09D)));
-[v _ADCON0bits `VS102 ~T0 @X0 0 e@157 ]
 "2046
 [; ;D:/Program Files/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1827.h: 2046:     struct {
 [s S110 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -740,60 +740,63 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;init.c: 47:     TRISBbits.TRISB7 = 0;
 [e = . . _TRISBbits 0 7 -> -> 0 `i `uc ]
 "50
-[; ;init.c: 50:     FVRCONbits.FVREN = 1;
-[e = . . _FVRCONbits 0 7 -> -> 1 `i `uc ]
+[; ;init.c: 50:     ADCON0bits.ADON = 0;
+[e = . . _ADCON0bits 0 0 -> -> 0 `i `uc ]
 "51
-[; ;init.c: 51:     FVRCONbits.ADFVR = 0b11;
+[; ;init.c: 51:     FVRCONbits.FVREN = 1;
+[e = . . _FVRCONbits 0 7 -> -> 1 `i `uc ]
+"52
+[; ;init.c: 52:     FVRCONbits.ADFVR = 0b11;
 [e = . . _FVRCONbits 1 0 -> -> 3 `i `uc ]
-"53
-[; ;init.c: 53:     ADCON1bits.ADCS = 0b001;
-[e = . . _ADCON1bits 1 2 -> -> 1 `i `uc ]
 "54
-[; ;init.c: 54:     ADCON0bits.CHS = 0b00000;
-[e = . . _ADCON0bits 1 2 -> -> 0 `i `uc ]
+[; ;init.c: 54:     ADCON1bits.ADCS = 0b001;
+[e = . . _ADCON1bits 1 2 -> -> 1 `i `uc ]
 "55
-[; ;init.c: 55:     ADCON1bits.ADFM = 1;
-[e = . . _ADCON1bits 0 7 -> -> 1 `i `uc ]
+[; ;init.c: 55:     ADCON0bits.CHS = 0b00000;
+[e = . . _ADCON0bits 1 2 -> -> 0 `i `uc ]
 "56
-[; ;init.c: 56:     ADCON1bits.ADNREF = 0;
-[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
+[; ;init.c: 56:     ADCON1bits.ADFM = 1;
+[e = . . _ADCON1bits 0 7 -> -> 1 `i `uc ]
 "57
-[; ;init.c: 57:     ADCON1bits.ADPREF = 0b11;
+[; ;init.c: 57:     ADCON1bits.ADNREF = 0;
+[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
+"58
+[; ;init.c: 58:     ADCON1bits.ADPREF = 0b11;
 [e = . . _ADCON1bits 1 0 -> -> 3 `i `uc ]
-"61
-[; ;init.c: 61:     LATAbits.LATA1 = 1;
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
 "62
-[; ;init.c: 62:     LATAbits.LATA2 = 1;
-[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
+[; ;init.c: 62:     LATAbits.LATA1 = 1;
+[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
 "63
-[; ;init.c: 63:     LATAbits.LATA3 = 1;
-[e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
+[; ;init.c: 63:     LATAbits.LATA2 = 1;
+[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
 "64
-[; ;init.c: 64:     LATAbits.LATA4 = 0;
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+[; ;init.c: 64:     LATAbits.LATA3 = 1;
+[e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
 "65
-[; ;init.c: 65:     LATAbits.LATA6 = 0;
-[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+[; ;init.c: 65:     LATAbits.LATA4 = 0;
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 "66
-[; ;init.c: 66:     LATAbits.LATA7 = 0;
-[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
+[; ;init.c: 66:     LATAbits.LATA6 = 0;
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 "67
-[; ;init.c: 67:     LATBbits.LATB0 = 0;
-[e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
+[; ;init.c: 67:     LATAbits.LATA7 = 0;
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 "68
-[; ;init.c: 68:     LATBbits.LATB3 = 0;
-[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[; ;init.c: 68:     LATBbits.LATB0 = 0;
+[e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
 "69
-[; ;init.c: 69:     LATBbits.LATB4 = 0;
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[; ;init.c: 69:     LATBbits.LATB3 = 0;
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
 "70
-[; ;init.c: 70:     LATBbits.LATB5 = 0;
+[; ;init.c: 70:     LATBbits.LATB4 = 0;
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+"71
+[; ;init.c: 71:     LATBbits.LATB5 = 0;
 [e = . . _LATBbits 0 5 -> -> 0 `i `uc ]
-"72
-[; ;init.c: 72:     init_UART();
-[e ( _init_UART ..  ]
 "73
-[; ;init.c: 73: }
+[; ;init.c: 73:     init_UART();
+[e ( _init_UART ..  ]
+"74
+[; ;init.c: 74: }
 [e :UE 354 ]
 }

@@ -9,7 +9,7 @@
  * BCD de la lectura de entrada, siendo el primer valor
  * el menos significativo o la lectura de 10 mV
  */
-unsigned short *BinTOBcd(unsigned long iADC) {
+unsigned short *mathBCD(unsigned long iADC) {
 
     static unsigned short r[3];
     r[0] = ((iADC * 1000) / 1024) % 10;
@@ -27,7 +27,7 @@ unsigned short *BinTOBcd(unsigned long iADC) {
  * la posicion inicial del apuntador o [0] es el bit menos
  * significativo
  */
-unsigned short *seg7(const unsigned short *iBCD) {
+unsigned short *math7Seg(const unsigned short *iBCD) {
 
     unsigned short numbers[10] = {
             //ABCDEFG
@@ -144,10 +144,12 @@ void UART_write(unsigned char c) {
  * Realiza la trasmicion de una cadena de caracteres
  * @param cadena cadena de caracteres a transmitir
  */
-void UART_print(unsigned char *cadena) {
-    while (*cadena != 0) {
+void printUART(unsigned char *cadena) {
+    int i = 0;
+    while (i < 4) {
         UART_write(*cadena);
         cadena++;
+        i++;
     }
 }
 
@@ -160,14 +162,11 @@ void UART_print(unsigned char *cadena) {
  * la trasmicion serie
  */
 unsigned char *ASCII_Con(unsigned short a,unsigned short b,unsigned short c) {
-    static unsigned char r[7];
+    static unsigned char r[4];
     r[0] = (char)(a + 48);
-    r[1] = '.';
-    r[2] = (char)(b + 48);
-    r[3] = (char)(c + 48);;
-    r[4] = ' ';
-    r[5] = 'V';
-    r[6] = '\0';
+    r[1] = (char)(b + 48);
+    r[2] = (char)(c + 48);
+    r[3] = '\t';
 
     return r;
 }

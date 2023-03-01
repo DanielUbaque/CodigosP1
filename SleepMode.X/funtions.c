@@ -9,7 +9,7 @@
  * BCD de la lectura de entrada, siendo el primer valor
  * el menos significativo o la lectura de 10 mV
  */
-unsigned short *BinTOBcd(unsigned long iADC) {
+unsigned short *mathBCD(unsigned long iADC) {
 
     static unsigned short r[3];
     r[0] = ((iADC * 1000) / 1024) % 10;
@@ -45,7 +45,7 @@ void UART_write(unsigned char c) {
  * Realiza la trasmicion de una cadena de caracteres
  * @param cadena cadena de caracteres a transmitir
  */
-void UART_print(unsigned char *cadena) {
+void printUART(unsigned char *cadena) {
     while (*cadena != 0) {
         UART_write(*cadena);
         cadena++;

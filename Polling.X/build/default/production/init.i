@@ -4370,9 +4370,9 @@ void showNumber(unsigned short digit);
 # 16 "./funtions.h"
 void showNumbers(unsigned short *digits);
 # 25 "./funtions.h"
-unsigned short * seg7(const unsigned short *iBCD);
+unsigned short * Matematicas_7seg(const unsigned short *iBCD);
 # 34 "./funtions.h"
-unsigned short* BinTOBcd(unsigned long iADC);
+unsigned short* mathBCD(unsigned long iADC);
 
 
 
@@ -4451,6 +4451,7 @@ void init_IO(void)
     TRISBbits.TRISB7 = 0;
 
 
+    ADCON0bits.ADON = 0;
     FVRCONbits.FVREN = 1;
     FVRCONbits.ADFVR = 0b11;
 

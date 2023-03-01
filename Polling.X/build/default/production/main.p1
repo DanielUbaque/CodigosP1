@@ -8,13 +8,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./funtions.h: 40: unsigned long readADC(void);
 [v _readADC `(ul ~T0 @X0 0 ef ]
 "34
-[; ;./funtions.h: 34: unsigned short* BinTOBcd(unsigned long iADC);
-[; ;./funtions.h: 34: unsigned short* BinTOBcd(unsigned long iADC);
-[v _BinTOBcd `(*us ~T0 @X0 0 ef1`ul ]
+[; ;./funtions.h: 34: unsigned short* mathBCD(unsigned long iADC);
+[; ;./funtions.h: 34: unsigned short* mathBCD(unsigned long iADC);
+[v _mathBCD `(*us ~T0 @X0 0 ef1`ul ]
 "25
-[; ;./funtions.h: 25: unsigned short * seg7(const unsigned short *iBCD);
-[; ;./funtions.h: 25: unsigned short * seg7(const unsigned short *iBCD);
-[v _seg7 `(*us ~T0 @X0 0 ef1`*Cus ]
+[; ;./funtions.h: 25: unsigned short * Matematicas_7seg(const unsigned short *iBCD);
+[; ;./funtions.h: 25: unsigned short * Matematicas_7seg(const unsigned short *iBCD);
+[v _Matematicas_7seg `(*us ~T0 @X0 0 ef1`*Cus ]
 "57
 [; ;./funtions.h: 57: void UART_print(unsigned char* cadena);
 [; ;./funtions.h: 57: void UART_print(unsigned char* cadena);
@@ -571,40 +571,49 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16
 [; ;main.c: 16:     init_IO();
 [e ( _init_IO ..  ]
-"18
-[; ;main.c: 18:     while(1)
-[e :U 356 ]
 "19
-[; ;main.c: 19:     {
-{
+[; ;main.c: 19:     unsigned long dataADC = 0;
+[v _dataADC `ul ~T0 @X0 1 a ]
+[e = _dataADC -> -> -> 0 `i `l `ul ]
 "20
-[; ;main.c: 20:         unsigned long iADC = readADC();
-[v _iADC `ul ~T0 @X0 1 a ]
-[e = _iADC ( _readADC ..  ]
+[; ;main.c: 20:     unsigned short *numerosBCD = 0;
+[v _numerosBCD `*us ~T0 @X0 1 a ]
+[e = _numerosBCD -> -> 0 `i `*us ]
 "21
-[; ;main.c: 21:         unsigned short *B = BinTOBcd(iADC);
-[v _B `*us ~T0 @X0 1 a ]
-[e = _B ( _BinTOBcd (1 _iADC ]
+[; ;main.c: 21:     unsigned short *formato7segmentos = 0;
+[v _formato7segmentos `*us ~T0 @X0 1 a ]
+[e = _formato7segmentos -> -> 0 `i `*us ]
 "23
-[; ;main.c: 23:         unsigned short* A = seg7(B);
-[v _A `*us ~T0 @X0 1 a ]
-[e = _A ( _seg7 (1 -> _B `*Cus ]
+[; ;main.c: 23:     while(1)
+[e :U 356 ]
 "24
-[; ;main.c: 24:         UART_print(ASCII_Con(B[2], B[1], B[0]));
-[e ( _UART_print (1 ( _ASCII_Con (3 , , *U + _B * -> -> 2 `i `x -> -> # *U _B `i `x *U + _B * -> -> 1 `i `x -> -> # *U _B `i `x *U + _B * -> -> 0 `i `x -> -> # *U _B `i `x ]
+[; ;main.c: 24:     {
+{
 "25
-[; ;main.c: 25:         showNumbers(A);
-[e ( _showNumbers (1 _A ]
+[; ;main.c: 25:         dataADC = readADC();
+[e = _dataADC ( _readADC ..  ]
+"26
+[; ;main.c: 26:         numerosBCD = mathBCD(dataADC);
+[e = _numerosBCD ( _mathBCD (1 _dataADC ]
 "27
-[; ;main.c: 27:     }
+[; ;main.c: 27:         formato7segmentos = Matematicas_7seg(numerosBCD);
+[e = _formato7segmentos ( _Matematicas_7seg (1 -> _numerosBCD `*Cus ]
+"28
+[; ;main.c: 28:         UART_print(ASCII_Con(numerosBCD[2], numerosBCD[1], numerosBCD[0]));
+[e ( _UART_print (1 ( _ASCII_Con (3 , , *U + _numerosBCD * -> -> 2 `i `x -> -> # *U _numerosBCD `i `x *U + _numerosBCD * -> -> 1 `i `x -> -> # *U _numerosBCD `i `x *U + _numerosBCD * -> -> 0 `i `x -> -> # *U _numerosBCD `i `x ]
+"29
+[; ;main.c: 29:         showNumbers(formato7segmentos);
+[e ( _showNumbers (1 _formato7segmentos ]
+"31
+[; ;main.c: 31:     }
 }
 [e :U 355 ]
 [e $U 356  ]
 [e :U 357 ]
-"29
-[; ;main.c: 29:     return;
+"33
+[; ;main.c: 33:     return;
 [e $UE 354  ]
-"30
-[; ;main.c: 30: }
+"34
+[; ;main.c: 34: }
 [e :UE 354 ]
 }
