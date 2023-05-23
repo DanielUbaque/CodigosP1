@@ -1,0 +1,71 @@
+#include <stdio.h>
+#define TRUE 1
+#define FALSE 0
+
+
+
+#include "mcc_generated_files/mcc.h"
+int ENCODER_V , ENCODER_OLD; 
+bool flag_encoder; 
+int COUNT_RISE; 
+int n1 =756; 
+
+
+/*
+                         Main application
+ */
+void main(void)
+{ 
+    
+    // initialize the device
+    SYSTEM_Initialize();
+    
+    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
+    // Use the following macros to:
+
+    //Enable the Global Interrupts
+    INTERRUPT_GlobalInterruptEnable();
+
+    // Enable the Peripheral Interrupts
+    INTERRUPT_PeripheralInterruptEnable();
+
+    // Disable the Global Interrupts
+   // INTERRUPT_GlobalInterruptDisable();
+
+    // Disable the Peripheral Interrupts
+    //INTERRUPT_PeripheralInterruptDisable();
+    ENCODER_OLD = FALSE; 
+    ENCODER_V   = FALSE; 
+    COUNT_RISE = 0;
+    flag_encoder = FALSE; 
+    Enable_SetHigh();
+    Input1_SetHigh();
+    Input2_SetHigh();
+
+    while (1)
+    {
+
+       if(flag_encoder == 1){
+            flag_encoder = 0; 
+            ENCODER_OLD = ENCODER_V;
+            ENCODER_V = ENCODER_A_GetValue();
+            if(ENCODER_OLD == 0 && ENCODER_V == 1){
+      
+                if(COUNT_RISE < n1+10){
+                    
+                    COUNT_RISE = COUNT_RISE+1;
+                    Enable_SetHigh();
+                    Input1_SetLow();
+                    Input2_SetHigh();     
+                }
+            else if (COUNT_RISE > n1-5){                        
+                   COUNT_RISE = COUNT_RISE-1;
+                  //  Enable_SetLow();
+                    Enable_SetHigh();
+                    Input1_SetHigh();
+                    Input2_SetLow();
+               }
+            }                       
+        }              
+   }
+}
